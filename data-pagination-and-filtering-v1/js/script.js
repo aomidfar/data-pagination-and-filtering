@@ -5,17 +5,7 @@ FSJS Project 2 - Data Pagination and Filtering
 
 
 
-/*
-For assistance:
-   Check out the "Project Resources" section of the Instructions tab: https://teamtreehouse.com/projects/data-pagination-and-filtering#instructions
-   Reach out in your Slack community: https://treehouse-fsjs-102.slack.com/app_redirect?channel=unit-2
-*/
 
-
-/*
-Create the `showPage` function
-This function will create and insert/append the elements needed to display a "page" of nine students
-*/
 
 function showPage(list, page){
 
@@ -46,7 +36,7 @@ function showPage(list, page){
    } 
 }
 
-//showPage(data, 1);
+
 
   
    
@@ -65,7 +55,8 @@ function addPagination(data){
      // set the innerHTML property of the variable you just created to an empty string
 
    linkList.innerHTML='';
-
+   
+   
 
   // loop over the number of pages needed
   for (let i=1; i<=numOfPages; i++){
@@ -79,7 +70,10 @@ function addPagination(data){
          const activate = document.querySelector('button'); 
          activate.className='active';// create an event listener on the `link-list` element
          linkList.addEventListener("click", (e) =>{
-         
+         // if the click target is a button:
+         // remove the "active" class from the previous button
+         // add the active class to the clicked button
+         // call the showPage function passing the `list` parameter and page to display as arguments
          
             if (e.target.tagName === 'BUTTON'){
 
@@ -91,10 +85,10 @@ function addPagination(data){
          };
 
      });
-    // if the click target is a button:
-      // remove the "active" class from the previous button
-      // add the active class to the clicked button
-      // call the showPage function passing the `list` parameter and page to display as arguments
+    
+    
+    
+    
    };
 
    }
@@ -102,6 +96,6 @@ function addPagination(data){
 
 
 
-// Call functions
-//function addPagination(data);
+
+
 showPage(data, 1);
