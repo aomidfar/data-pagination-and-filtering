@@ -39,45 +39,23 @@ function showPage(list, page){
 
 
   
-   
-
-
-
-/*
-Create the `addPagination` function
-This function will create and insert/append the elements needed for the pagination buttons
-*/
 function addPagination(data){
- // create a variable to calculate the number of pages needed
+ 
    let numOfPages = Math.ceil(data.length / 9)
-   // select the element with a class of `link-list` and assign it to a variable
-   const linkList = document.getElementsByClassName('link-list');
-     // set the innerHTML property of the variable you just created to an empty string
-
+   const linkList = document.querySelector('ul.link-list');
    linkList.innerHTML='';
    
-   
-
-  // loop over the number of pages needed
-  for (let i=1; i<=numOfPages; i++){
+     for (let i=1; i<=numOfPages; i++){
   
-  
-  // create the elements needed to display the pagination button
-    // insert the above elements
-   let button = `<li><button type="button">${i}</button></li>`;
-   linkList.insertAdjacentHTML('beforeend', button);
-  // give the first pagination button a class of "active"
+         let button = `<li><button type="button">${i}</button></li>`;
+         linkList.insertAdjacentHTML('beforeend', button);
          const activate = document.querySelector('button'); 
-         activate.className='active';// create an event listener on the `link-list` element
+         activate.className='active';
          linkList.addEventListener("click", (e) =>{
-         // if the click target is a button:
-         // remove the "active" class from the previous button
-         // add the active class to the clicked button
-         // call the showPage function passing the `list` parameter and page to display as arguments
          
             if (e.target.tagName === 'BUTTON'){
 
-            const deactivate = document.getElementsByClassName('active');
+            const deactivate = document.querySelector('.active');
             deactivate.className='';
             e.target.className='active';
             showPage(data, e.target.textContent)
@@ -97,5 +75,5 @@ function addPagination(data){
 
 
 
-
+addPagination(data);
 showPage(data, 1);
