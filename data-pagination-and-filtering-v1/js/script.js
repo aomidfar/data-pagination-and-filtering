@@ -5,7 +5,7 @@ FSJS Project 2 - Data Pagination and Filtering
 
 
 
-
+// function to create and insert 9 students 
 
 function showPage(list, page){
 
@@ -37,7 +37,7 @@ function showPage(list, page){
 }
 
 
-
+// create function to assign numbered buttons for each page of 9 students 
   
 function addPagination(data){
  
@@ -71,9 +71,59 @@ function addPagination(data){
 
    }
 
-
-
-
-
 addPagination(data);
 showPage(data, 1);
+
+//dynamically create and add search bar
+const header = document.querySelector('.header'); 
+header.insertAdjacentHTML('beforeend',`
+<label for="search" class="student-search">
+  <span>Search by name</span>
+  <input id="search" placeholder="Search by name...">
+  <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
+</label>
+`)
+
+
+
+
+//search bar functionality part
+
+const searchButton = document.querySelector('.student-search');
+const search = document.querySelector('#search');
+
+
+
+
+function searchFunc(list) {
+   
+   const searchInput = search.value.toLowerCase();
+   let searchResult=[];
+
+   for (let i=0; i < list.length; i++){
+
+     let fullName = `${list[i].name.first.toLowerCase()} ${list[i].name.last.toLowerCase()}`;
+     
+      if(searchInput !== 0 && fullName.includes(searchInput)){
+        searchResult.push(list[i]);
+        //searchResult+= list[i];
+        console.log(searchResult);
+        const ul = document.querySelector('.student.list');
+      }
+      showPage(searchResult, 1);
+      addPagination(searchResult);  
+   };
+};
+// click function of the search bar
+searchButton.addEventListener('click', (e)=>{
+
+   e.preventDefault();
+   searchFunc(data);
+});
+// live letter by letter searchability of the search bar
+search.addEventListener('keyup', (e)=>{
+   e.preventDefault();
+   searchFunc(data);
+});
+
+
