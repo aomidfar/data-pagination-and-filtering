@@ -22,7 +22,7 @@ function showPage(list, page){
          let html = `
          <li class="student-item cf">
             <div class="student-details">
-               <img class"avatar" src=${student.picture.large} alt="Profile Picture"
+            <img class"avatar" src=${student.picture.large} alt="Profile Picture"
                <h3>${student.name.first} ${student.name.last}</h3>
                <span class="email">${student.email}</span>
             </div>
@@ -37,8 +37,7 @@ function showPage(list, page){
 }
 
 
-// create function to assign numbered buttons for each page of 9 students 
-  
+// create function to assign numbered buttons for each page of 9 students   
 function addPagination(data){
  
    let numOfPages = Math.ceil(data.length / 9)
@@ -55,12 +54,12 @@ function addPagination(data){
          
             if (e.target.tagName === 'BUTTON'){
 
-            const deactivate = document.querySelector('.active');
-            deactivate.className='';
-            e.target.className='active';
-            showPage(data, e.target.textContent)
+               const deactivate = document.querySelector('.active');
+               deactivate.className='';
+                e.target.className='active';
+               showPage(data, e.target.textContent)
             
-         };
+             };
 
      });
     
@@ -70,9 +69,6 @@ function addPagination(data){
    };
 
    }
-
-addPagination(data);
-showPage(data, 1);
 
 //dynamically create and add search bar
 const header = document.querySelector('.header'); 
@@ -104,14 +100,13 @@ function searchFunc(list) {
 
      let fullName = `${list[i].name.first.toLowerCase()} ${list[i].name.last.toLowerCase()}`;
      
-      if(searchInput !== 0 && fullName.includes(searchInput)){
-        searchResult.push(list[i]);
-        //searchResult+= list[i];
-        console.log(searchResult);
-        const ul = document.querySelector('.student.list');
-      }
-      showPage(searchResult, 1);
-      addPagination(searchResult);  
+         if(searchInput !== 0 && fullName.includes(searchInput)){
+            searchResult.push(list[i]);
+            const ul = document.querySelector('.student.list');
+         }
+         
+         showPage(searchResult, 1);
+         addPagination(searchResult);  
    };
 };
 // click function of the search bar
@@ -126,4 +121,5 @@ search.addEventListener('keyup', (e)=>{
    searchFunc(data);
 });
 
-
+addPagination(data);
+showPage(data, 1);
