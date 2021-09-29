@@ -22,7 +22,7 @@ function showPage(list, page){
          let html = `
          <li class="student-item cf">
             <div class="student-details">
-            <img class='avatar' src=${student.picture.large} alt="Profile Picture"
+            <img class='avatar' src=${student.picture.large} alt="Profile Picture">
                <h3>${student.name.first} ${student.name.last}</h3>
                <span class="email">${student.email}</span>
             </div>
@@ -48,7 +48,7 @@ function addPagination(data){
      for (let i=1; i<=numOfPages; i++){
   
          let button = `<li><button type="button">${i}</button></li>`;
-         if (i===0){button.className='active'};
+         if (i===1){button.className='active'};
          linkList.insertAdjacentHTML('beforeend', button);
          const activate = document.querySelector('button'); 
          activate.className='active';
@@ -106,6 +106,7 @@ function searchFunc(list) {
          if (searchResult.length===0){
             const noResult = document.querySelector('.student-list')
             noResult.innerHTML='<h1>No Results Found</h1>';
+            
             
          }else{
          showPage(searchResult, 1);
