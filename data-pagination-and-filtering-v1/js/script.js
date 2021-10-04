@@ -45,21 +45,31 @@ function addPagination(data){
    const linkList = document.querySelector('ul.link-list');
    linkList.innerHTML='';
    
+
      for (let i=1; i<=numOfPages; i++){
   
-         let button = `<li><button type="button">${i}</button></li>`;
-         if (i===1){button.className='active'};
-         linkList.insertAdjacentHTML('beforeend', button);
-         const activate = document.querySelector('button'); 
-         activate.className='active';
+         let pageButton = `<li><button type="button">${i}</button></li>`;
+         if (i===1){pageButton.className='active'};
+         linkList.insertAdjacentHTML('beforeend', pageButton);
+         
+         
+         const buttons = linkList.getElementsByTagName('button'); 
+         buttons[0].className='active';
          linkList.addEventListener("click", (e) =>{
          
             if (e.target.tagName === 'BUTTON'){
 
-               const deactivate = document.querySelector('.active');
-               deactivate.className='';
+               for (let i=0; i < buttons.length; i++){
+
+                     buttons[i].className='';
+               }
+               
+               
+             
+               
                 e.target.className='active';
                showPage(data, e.target.textContent)
+               
             
              };
 
@@ -68,8 +78,8 @@ function addPagination(data){
    };
 
    }
-
-//dynamically create and add search bar
+  
+  //dynamically create and add search bar
 const header = document.querySelector('.header'); 
 header.insertAdjacentHTML('beforeend',`
 <label for="search" class="student-search">
@@ -105,10 +115,10 @@ function searchFunc(list) {
          }
          if (searchResult.length===0){
             const noResult = document.querySelector('.student-list')
-            noResult.innerHTML='<h1>No Results Found</h1>';
-            
-            
+            noResult.innerHTML='<h1>Sorry! No Results Found, Please Try Searching a Different Name</h1>';
+            addPagination(0); 
          }else{
+         
          showPage(searchResult, 1);
          addPagination(searchResult);  };
    };
